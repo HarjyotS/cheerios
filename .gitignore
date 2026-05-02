@@ -1,14 +1,45 @@
+# Dependencies
 node_modules/
+
+# Build output
 out/
+dist/
+build/
 release/
-.env
-.env.local
-.DS_Store
-*.log
 .vite/
+.electron-vite/
 .cache/
+*.tsbuildinfo
+
+# Native build artifacts
 resources/bin/system-audio-capture
 native/SystemAudioCapture/.build/
 native/SystemAudioCapture/Package.resolved
-.electron-vite/
+
+# Local config and secrets
+.env
+.env.*
+!.env.example
 dev-data/
+.claude/settings.local.json
+
+# Logs and diagnostics
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Test / coverage output
+coverage/
+playwright-report/
+test-results/
