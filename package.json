@@ -1,0 +1,85 @@
+{
+  "name": "cherios",
+  "version": "0.1.0",
+  "description": "Private desktop AI notetaker. Deepgram-powered, Drive-native.",
+  "main": "out/main/index.js",
+  "author": "harjyot",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "build:mac": "electron-vite build && electron-builder --mac",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "openai": "^4.76.0",
+    "@deepgram/sdk": "^3.9.0",
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "better-sqlite3": "^11.5.0",
+    "chokidar": "^4.0.1",
+    "date-fns": "^4.1.0",
+    "electron-store": "^10.0.0",
+    "electron-updater": "^6.3.9",
+    "express": "^4.21.1",
+    "googleapis": "^144.0.0",
+    "keytar": "^7.9.0",
+    "nanoid": "^3.3.7",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/utils": "^3.0.0",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/ws": "^8.5.13",
+    "@vitejs/plugin-react": "^4.3.3",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "electron-rebuild": "^3.2.9",
+    "electron-vite": "^2.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "zustand": "^5.0.1"
+  },
+  "build": {
+    "appId": "com.harjyot.cherios",
+    "productName": "Cherios",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "resources"
+    },
+    "files": [
+      "out/**/*",
+      "resources/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      "resources/bin/system-audio-capture"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "hardenedRuntime": true,
+      "entitlements": "resources/entitlements.mac.plist",
+      "entitlementsInherit": "resources/entitlements.mac.plist",
+      "gatekeeperAssess": false,
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Cherios records meeting audio you choose to transcribe.",
+        "NSScreenCaptureUsageDescription": "Cherios captures system audio from meetings you choose to transcribe.",
+        "NSAppleEventsUsageDescription": "Cherios detects active meeting apps to offer to start a note.",
+        "LSUIElement": false
+      }
+    }
+  }
+}

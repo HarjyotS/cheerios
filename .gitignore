@@ -1,0 +1,14 @@
+node_modules/
+out/
+release/
+.env
+.env.local
+.DS_Store
+*.log
+.vite/
+.cache/
+resources/bin/system-audio-capture
+native/SystemAudioCapture/.build/
+native/SystemAudioCapture/Package.resolved
+.electron-vite/
+dev-data/
